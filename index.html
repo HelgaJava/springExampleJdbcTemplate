@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ольга - Java Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #e9ecef;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .project {
+            border-left: 4px solid #2575fc;
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2575fc;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ольга</h1>
+        <p class="subtitle">Java Backend Developer | Spring Expert</p>
+        <p>Создаю надежные и масштабируемые серверные приложения</p>
+    </header>
+
+    <section id="about">
+        <h2>Обо мне</h2>
+        <p>Java-разработчик с опытом создания enterprise-приложений. Специализируюсь на Spring Framework, микросервисной архитектуре и REST API.</p>
+        
+        <div class="tech-stack">
+            <span class="tech-item">Java 17+</span>
+            <span class="tech-item">Spring Boot</span>
+            <span class="tech-item">Hibernate/JPA</span>
+            <span class="tech-item">PostgreSQL/MySQL</span>
+            <span class="tech-item">Git & GitHub</span>
+            <span class="tech-item">Maven</span>
+            <span class="tech-item">IntelliJ IDEA</span>
+            <span class="tech-item">Docker</span>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Проекты</h2>
+        
+        <div class="project">
+            <h3>REST API для e-commerce</h3>
+            <p>Микросервисная архитектура с Spring Cloud, JWT аутентификацией и кэшированием.</p>
+            
+            <div class="code-block no-select">
+// Пример структуры контроллера
+@RestController
+@RequestMapping("/api/v1/products")
+@RequiredArgsConstructor
+public class ProductController {
+    
+    private final ProductService productService;
+    
+    @GetMapping
+    public ResponseEntity&lt;List&lt;ProductDTO&gt;&gt; getAllProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        return ResponseEntity.ok(productService.getAllProducts(page, size));
+    }
+    
+    // Дополнительная логика скрыта
+}
+            </div>
+            
+            <p><strong>Технологии:</strong> Spring Boot, Spring Security, Redis, PostgreSQL, Docker</p>
+        </div>
+        
+        <div class="project">
+            <h3>Система обработки платежей</h3>
+            <p>Асинхронная обработка транзакций с RabbitMQ и паттерном Saga.</p>
+            
+            <div class="code-block no-select">
+// Фрагмент конфигурации Spring
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+    
+    @Bean(name = "transactionTaskExecutor")
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(25);
+        executor.setThreadNamePrefix("transaction-");
+        return executor;
+    }
+}
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Контакты</h2>
+        <p>Всегда открыта к интересным проектам и профессиональному общению.</p>
+        
+        <p>
+            <a href="https://github.com/HelgaJava" class="btn" target="_blank">Мой GitHub</a>
+            <a href="mailto:maksimochkinaol@gmail.com" class="btn">Написать email</a>
+        </p>
+        
+        <p><small>Полный код проектов доступен по запросу.</small></p>
+    </section>
+
+    <footer>
+        <p>© 2024 Ольга - Java Developer. Страница создана с помощью GitHub Pages.</p>
+        <p>Обновлено: <span id="current-date"></span></p>
+    </footer>
+
+    <script>
+        // Динамическая дата
+        document.getElementById('current-date').textContent = 
+            new Date().toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        
+        // Защита от копирования (базовая)
+        document.querySelectorAll('.no-select').forEach(el => {
+            el.addEventListener('copy', (e) => {
+                e.preventDefault();
+                alert('Код защищен от копирования. Для доступа к полной версии свяжитесь со мной.');
+            });
+            
+            el.addEventListener('contextmenu', (e) => e.preventDefault());
+        });
+        
+        console.log('GitHub Pages портфолио загружено!');
+    </script>
+</body>
+</html>
